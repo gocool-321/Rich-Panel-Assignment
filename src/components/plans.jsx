@@ -4,26 +4,51 @@ import Toggle from "react-toggle";
 import "./plans.css";
 import { Redirect } from "react-router-dom";
 import "./toggle.css";
+import axios from "axios";
+import StripeCheckout from "react-stripe-checkout";
 
 function Plans() {
   const [plans, setPlans] = useState(0);
-  const [prices, setPrices] = useState([100, 200, 500, 700]);
-  const { isAuthenticated, isLoading } = useAuth0();
+  const [sendRoute, setsendRoute] = useState(false);
+  const [prices, setPrices] = useState([1000, 2000, 5000, 7000]);
+  const { isAuthenticated, isLoading, user } = useAuth0();
 
   const handlePrices = (e) => {
     if (e.target.checked) {
-      setPrices([1000, 2000, 5000, 7000]);
-    } else {
       setPrices([100, 200, 500, 700]);
+    } else {
+      setPrices([1000, 2000, 5000, 7000]);
     }
   };
 
-  const submitForm = (e) => {
-    e.preventDefault();
-    console.log("current Price is", prices[plans]);
+  const handlePayment = async (event) => {
+    const result = await axios.post("http://localhost:8282/payments", {
+      product: {
+        name: plans_obj[plans],
+        amount: prices[plans],
+        currency: "INR",
+      },
+      user,
+      event,
+    });
+    console.log(result);
+    if (result.status === 200) {
+      console.log("Payment Successful");
+      setsendRoute(true);
+    } else {
+      console.log("Payment Failed");
+    }
+  };
+
+  const plans_obj = {
+    0: "Mobile",
+    1: "Basic",
+    2: "standard",
+    3: "Premium",
   };
   return (
     <>
+      {sendRoute ? <Redirect to="/myplans" /> : null}
       {isLoading ? (
         <div>Loading...</div>
       ) : (
@@ -215,7 +240,16 @@ function Plans() {
                   </span>
                   <span>Month</span>
                 </div>
-                <button onClick={submitForm}>Next</button>
+                <StripeCheckout
+                  stripeKey="pk_test_51LPfyrSCPAEv6A9Q0rRqDdD408rIEbyspZ8m0IZ6zFnsflSb5LxJS6o0aJ7DlNynby3DXpWJTPxZwBaPB5kS4KBt00koJ9bFyR"
+                  amount={prices[plans] * 100}
+                  currency="INR"
+                  name={`Buying ${plans_obj[plans]} plan for ₹${prices[plans]}`}
+                  token={handlePayment}
+                  email
+                >
+                  <button>Pay Now</button>
+                </StripeCheckout>
               </div>
             </div>
           ) : (

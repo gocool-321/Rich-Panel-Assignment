@@ -7,9 +7,12 @@ export default function DashBoard(props) {
     <div className="centralized">
       <div className="card">
         <h1>Welcome {user.name}</h1>
-        <h6>Welcome {user.email}</h6>
-        <NavLink to="/plans" className="m-4">
+        <h6>{user.email}</h6>
+        <NavLink to="/plans" className="btn btn-warning m-4">
           Go Through Plans
+        </NavLink>
+        <NavLink to="/myplans" className="btn btn-warning">
+          My Plans
         </NavLink>
         <button className="btn btn-info" onClick={() => logout()}>
           Logout
