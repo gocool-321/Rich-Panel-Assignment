@@ -6,6 +6,7 @@ import Selectplan from "./components/SelectPlan";
 import Register from "./components/welcome";
 import Login from "./components/Login";
 import DashBoard from "./components/DashBoard";
+import Plans from "./components/plans";
 
 function App() {
   const [user, setUser] = useState({});
@@ -16,6 +17,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/selectplan" component={Selectplan} />
         <Route exact path="/DashBoard" component={DashBoard} />
+        <Route exact path="/plans" component={Plans} />
         <Route exact component={ErrorPage402} />
       </Switch>
     </div>
