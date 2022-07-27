@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Toggle from "react-toggle";
-import "./plans.css";
 import { Redirect } from "react-router-dom";
 import "./toggle.css";
 import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
+import "./plans.css";
 
 function Plans() {
   const [plans, setPlans] = useState(0);

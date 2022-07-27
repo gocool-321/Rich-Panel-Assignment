@@ -4,20 +4,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Redirect } from "react-router-dom";
 
 export default function Register(props) {
-  //   const [email, setEmail] = useState("");
-  //   const [password, setPassword] = useState("");
-  //   const [name, setName] = useState("");
-
-  //   const sendToBackEnd = async (e) => {
-  //     e.preventDefault();
-  //     console.log(email, password);
-  //     const res = await axios.post("http://localhost:5000/signup",{
-  //         email: email,
-  //         name: name,
-  //         password: password
-  //     });
-  //     console.log(res);
-  // }
   const { loginWithPopup, isAuthenticated, user, logout, isLoading } =
     useAuth0();
 
@@ -33,22 +19,23 @@ export default function Register(props) {
             <div className="centralized">
               {console.log(isAuthenticated, user)}
               <div className="card">
+                <h3>Rich panel Assignment - Stripe Payments</h3>
                 <button
-                  className="btn btn-warning m"
+                  className="btn btn-secondary"
                   onClick={() => {
                     loginWithPopup();
                   }}
                 >
-                  Login
+                  Authenticate 🔑
                 </button>
-                <button
-                  className="btn btn-warning m-4"
+                {/* <button
+                  className="btn btn-warning"
                   onClick={() => {
                     loginWithPopup();
                   }}
                 >
                   Signup
-                </button>
+                </button> */}
               </div>
             </div>
           )}

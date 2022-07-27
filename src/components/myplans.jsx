@@ -3,6 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink, Redirect } from "react-router-dom";
 import axios from "axios";
 import "./welcome.css";
+import SubscribedItem from "./subscribedItem";
 
 function MyPlans() {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -16,6 +17,8 @@ function MyPlans() {
     };
     getOrders();
   }, []);
+
+  // const deletePayment =
   return (
     <>
       <div className="centralized">
@@ -23,24 +26,29 @@ function MyPlans() {
           <div>
             {isAuthenticated ? (
               <>
-                <h2 style={{ marginBottom: "4rem" }}>Current Plans: </h2>
-                {orders.map((order) => {
-                  return (
-                    <h4>
-                      Plan: <span>{order.planName}</span> -{" "}
-                      <span>{order.amount}</span>
-                    </h4>
-                  );
-                })}
-                <NavLink to="/" className="btn btn-primary m-3">
-                  Go Back
-                </NavLink>
+                {orders.length === 0 ? (
+                  <>
+                    <h1>Naive User!</h1>
+                    <NavLink to="/plans" className="btn btn-warning m-3">
+                      Wanna subscribe?
+                    </NavLink>
+                  </>
+                ) : (
+                  <>
+                    <h2 style={{ marginBottom: "4rem" }}>Current Plans: </h2>
+                    {orders.map((order) => {
+                      return <SubscribedItem order={order} />;
+                    })}
+                    <NavLink to="/" className="btn btn-primary m-3">
+                      Go Back
+                    </NavLink>
+                  </>
+                )}
               </>
             ) : (
               <Redirect to="/" />
             )}
           </div>
-          ;
         </div>
       </div>
     </>

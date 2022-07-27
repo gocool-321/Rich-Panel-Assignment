@@ -6,7 +6,7 @@ export default function DashBoard(props) {
   return (
     <div className="centralized">
       <div className="card">
-        <h1>Welcome {user.name}</h1>
+        <h4>Welcome {user.name}</h4>
         <h6>{user.email}</h6>
         <NavLink to="/plans" className="btn btn-warning m-4">
           Go Through Plans
@@ -14,7 +14,7 @@ export default function DashBoard(props) {
         <NavLink to="/myplans" className="btn btn-warning">
           My Plans
         </NavLink>
-        <button className="btn btn-info" onClick={() => logout()}>
+        <button className="btn btn-dark" onClick={() => logout()}>
           Logout
         </button>
       </div>
