@@ -39,7 +39,7 @@ function MyPlans() {
                     {orders.map((order) => {
                       return <SubscribedItem order={order} />;
                     })}
-                    <NavLink to="/" className="btn btn-primary m-3">
+                    <NavLink to="/" className="btn btn-primary m-3 ">
                       Go Back
                     </NavLink>
                   </>

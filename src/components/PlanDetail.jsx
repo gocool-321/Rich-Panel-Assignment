@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./welcome.css";
 import axios from "axios";
+import { Button, Confirm } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 
 function PlanDetail(props) {
   const [currPlan, setCurrPlan] = useState({});
   const [redirects, setRedirects] = useState(false);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     const getPlan = async () => {
       const id = props.match.params.id;

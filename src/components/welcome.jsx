@@ -19,7 +19,9 @@ export default function Register(props) {
             <div className="centralized">
               {console.log(isAuthenticated, user)}
               <div className="card">
-                <h3>Rich panel Assignment - Stripe Payments</h3>
+                <h4 className="has-text-link">
+                  Rich panel Assignment - Stripe Payments
+                </h4>
                 <button
                   className="btn btn-secondary"
                   onClick={() => {

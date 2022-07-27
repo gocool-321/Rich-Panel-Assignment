@@ -56,7 +56,7 @@ function Plans() {
           {isAuthenticated ? (
             <div>
               <section className="ft">
-                <h1 className="cta m-5">
+                <h1 className="cta m-5 has-text-dark">
                   Choose the plan that’s right for you
                 </h1>
               </section>
